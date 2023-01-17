@@ -1,6 +1,6 @@
 import sys
-T = input()
-N = int(input())
+T = sys.stdin.readline()
+N = int(sys.stdin.readline())
 
 ans = [i for i in T]
 

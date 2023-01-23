@@ -1,17 +1,23 @@
+import sys
+input = sys.stdin.readline
+
 T = int(input())
+# 후입선출 스택
 for t in range(T):
     vps = input()
-
-    ps = 0
-    for i in range(len(vps)):
-        if vps[i] == '(':
-            ps += 1
-        elif vps[i] == ')':
-            if ps == 0:
-                ps -= 2
+    vps_li = []
+    for v in vps:
+        if v == '(':
+            vps_li.append(v)
+        elif v == ')':
+            if not vps_li:
+                vps_li.append(v)
+            elif ')' in vps_li:
+                vps_li.append(v)
             else:
-                ps -= 1
-    if ps == 0:
+                vps_li.pop()
+
+    if not vps_li:
         print('YES')
     else:
         print('NO')

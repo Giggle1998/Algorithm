@@ -4,6 +4,7 @@ card = [0] * N
 card = list(map(int, input().split()))
 
 combi = list(itertools.combinations(card,3))
+
 sum_li = []
 for c in combi:
     if sum(c) <= M:

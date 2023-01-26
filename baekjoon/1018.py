@@ -1,40 +1,32 @@
-N, M = map(int, input().split())
+n = 8
+str1 = "BWBWBWBW"
+str2 = 'WBWBWBWB'
+pivot1 = [str1, str2, str1, str2, str1, str2, str1, str2]
+pivot2 = [str2, str1, str2, str1, str2, str1, str2, str1]
+def solve():
+    N, M = [int(x) for x in input().split()]
+    board = []
+    for i in range(N):
+        board.append(input())
+    result = float('inf')
+    for i in range(N-n+1):
+        for j in range(M-n+1):
+            cnt = 0
+            for p in range(n):
+                for q in range(n):
+                    if board[i+p][i+q] != pivot1[p][q]:
+                        cnt += 1
+            result = min(result, cnt)
+            cnt = 0
+            for p in range(n):
+                for q in range(n):
+                    if board[i+p][i+q] != pivot2[p][q]:
+                        cnt += 1
+            result = min(result, cnt)
 
-board = []
-cnt = 0
-for i in range(N):
-    board.append(input())
+    print(result)
 
-board_t = list(zip(*board))
+solve()
 
-print(board)
-print(board_t)        
-
-# 8*8 check
-B = 0
-W = 0
-range_board = len(board) - 7
-for i in range(range_board):
-    for j in range(N):
-        if board[j][i:8+i]:
-            B = board[j][i:8+i].count('B')
-            W = board[j][i:8+i].count('W')
-            
-
-
-
-# for b in board:
-#     for i in range(N-1):
-#         if b[i] == 'B':
-#             if b[i+1] == 'W':
-#                 pass
-#             else:
-#                 cnt += 1
-#             pass
-#         elif b[i] == 'W':
-#             if b[i+1] == 'B':
-#                 pass
-#             else:
-#                 cnt += 1
             
 

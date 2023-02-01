@@ -22,10 +22,10 @@ for t in range(T):
                 que_copy.append(pop_copy)
                 # print('if', que)
             elif int(que[0]) == max(que_copy):
-                if not isinstance(que[0], int): # 정수가 아니라면
+                cnt += 1
+                if not isinstance(que[0], int): # 정수가 아니라면 -> 찾고자하는 타켓값이라면
                     print(cnt+1)
                     break
                 que.popleft()
                 que_copy.popleft()
-                cnt += 1
                 # print('elif', que)

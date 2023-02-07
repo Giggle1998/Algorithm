@@ -1,17 +1,25 @@
 import sys
-input = sys.stdin.readline   # 시간 초과
+input = sys.stdin.readline
 
 N, M = map(int, input().split())
-
 arr = list(map(int, input().split()))
+start, end = 0, max(arr)
 
-for i in range(min(arr), max(arr)):
-    _sum = 0
-    for j in range(len(arr)):
-        if arr[j] > i:
-            _sum += arr[j] - i
+ans = 0
+while start <= end:
 
-    if _sum == M:
-        print(i)
-        break
+    mid = (start + end) // 2
+    cnt = 0
+    for tree in arr:
+        if tree > mid:
+            cnt += tree - mid
+
+    if cnt < M:
+        end = mid - 1
+    else:
+        ans = mid
+        start = mid + 1
+
+print(ans)
+
 

@@ -1,37 +1,23 @@
-import sys
-T = sys.stdin.readline()
-N = int(sys.stdin.readline())
-
-ans = [i for i in T]
-
-cursor = len(T)
-for n in range(N):
-    value = (sys.stdin.readline()).split()
-
-    if value[0] == 'L':
-        if cursor == 0:
+data = list(input())
+N = int(input())
+backup = []
+for i in range(N):
+    com = input().split()
+    if com[0] == 'L':
+        if len(data) == 0: # 문자 처음
             continue
-        else:
-            cursor -= 1
-
-    elif value[0] == 'D':
-        if cursor == len(T):
+        backup.append(data.pop())
+    elif com[0] == 'D':
+        if len(backup) == 0: # 문자 끝
             continue
-        else:
-            cursor += 1
-
-    elif value[0] == 'B':
-        if cursor == 0:
+        data.append(backup.pop())
+    elif com[0] == 'B':
+        if len(data) == 0:
             continue
-        else:
-            ans.pop(cursor-1)
-            cursor -= 1
+        data.pop()
+    else:
+        data.append(com[1])
+for j in range(len(backup)):
+    data.append(backup.pop())
 
-    elif value[0] == 'P':
-        ans.insert(cursor, value[1])
-        cursor += 1
-
-for a in ans:
-    print(*a, end='')
-
-
+print(''.join(data))

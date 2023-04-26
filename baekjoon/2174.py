@@ -26,14 +26,14 @@ for _ in range(M):
     # 로봇번호, 명령 종류, 횟수
     n, t, c = input().split()
     n, c = int(n)-1, int(c)
-    if t == 'R':
+    if t == 'R': # 오른쪽으로 회전
         dir = 0
         if pos[n][2] == 'N': dir = 0
         elif pos[n][2] == 'E': dir = 1
         elif pos[n][2] == 'S': dir = 2
         elif pos[n][2] == 'W': dir = 3
         pos[n][2] = R_lst[(dir + c) % 4]
-    elif t == 'L':
+    elif t == 'L': # 왼쪽으로 회전
         dir = 0
         if pos[n][2] == 'N':dir = 0
         elif pos[n][2] == 'E':dir = 3
@@ -41,7 +41,7 @@ for _ in range(M):
         elif pos[n][2] == 'W':dir = 1
         pos[n][2] = L_lst[(dir + c) % 4]
     else:
-        for _ in range(c):
+        for _ in range(c): # 앞으로 이동
             if pos[n][2] == 'N': pos[n][1] += 1
             elif pos[n][2] == 'E': pos[n][0] += 1
             elif pos[n][2] == 'S': pos[n][1] -= 1

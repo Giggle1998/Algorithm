@@ -1,9 +1,4 @@
 '''
--> 잘못된 방향
-완전 탐색
-서로 다른 물질과 Hamming Disance의 누적합을 구하고
-최종적으로 최소를 구한다
--> 새로운 방향
 행으로 탐색하여 Hamming Distance의 합이 가장 작은 DNA 생성
 생성한 Hamming Distance의 합은?
 '''

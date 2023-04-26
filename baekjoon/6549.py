@@ -1,3 +1,6 @@
+'''
+스택을 통해 인덱스의 값을 비교해가며 넓이 구하기
+'''
 while 1:
     lst = list(map(int, input().split()))
     if lst[0] == 0:

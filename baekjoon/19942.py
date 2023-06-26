@@ -14,7 +14,6 @@ def dfs(n, p, f, s, v, cost, check):
     dfs(n+1, p+arr[n][0], f+arr[n][1], s+arr[n][2], v+arr[n][3], cost+arr[n][4], check+[n+1])
     dfs(n + 1, p, f, s, v, cost, check)
 
-
 N = int(input())
 # 단백질 지방 탄수화물 비타민
 P, F, S, V = map(int, input().split())

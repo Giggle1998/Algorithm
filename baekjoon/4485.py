@@ -36,5 +36,6 @@ while 1:
         break
     arr = [list(map(int, input().split())) for _ in range(N)]
     D = [[INF]*N for _ in range(N)]
+    # 0, 0에서 탐색 시작
     dijkstra(0, 0)
     print(f'Problem {T}: {D[N-1][N-1]}')

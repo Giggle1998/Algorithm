@@ -2,7 +2,7 @@ from collections import deque
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
-# 치즈가 존재하는지 체크
+# 치즈가 존재하는 경우를 체크하는 함수
 def check(arr):
     for lst in arr:
         if lst.count(1):

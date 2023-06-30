@@ -7,11 +7,13 @@ public class BOJ_1024 {
 
         while (true) {
             int min = N / L - ((L - 1) / 2);
+            // 정답이 아닌 경우
             if (min < 0 || L > 100) {
                 System.out.println(-1);
                 System.exit(0);
             }
             int sum = (min * 2 + L - 1) * L / 2;
+            // 정답인 경우
             if (sum == N) {
                 for (int i = 0; i < L; i++) {
                     System.out.print((min+i) + " ");

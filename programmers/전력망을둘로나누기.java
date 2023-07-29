@@ -12,11 +12,14 @@ class 전력망을둘로나누기 {
         }
 
         for (int i=0; i<wires.length; i++) {
+            // 전력망 끊기
             arr[wires[i][0]][wires[i][1]] = 0;
             arr[wires[i][1]][wires[i][0]] = 0;
 
+            // bfs 탐색을 통해 최적의 해를 도출
             answer = Math.min(answer, bfs(n, wires[i][0]));
 
+            // 전력망 복구
             arr[wires[i][0]][wires[i][1]] = 1;
             arr[wires[i][1]][wires[i][0]] = 1;
         }

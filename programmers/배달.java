@@ -4,6 +4,7 @@ class 배달 {
     static int cnt = 1;
     static int[] visited;
     static class Node {
+        // 출발, 도착, 시간
         int x, y, v;
 
         Node(int x, int y, int v) {

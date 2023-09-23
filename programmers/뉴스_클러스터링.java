@@ -10,24 +10,28 @@ class Solution {
         
         List<String> lst1 = divide(str1);
         List<String> lst2 = divide(str2);
-        HashSet<String> set = new HashSet<String>();
-    
-        int cnt1 = 0; // 교집합                          
-        int cnt2 = 0; // 합집합
-        for (String s1 : lst1) {
-            for (String s2 : lst2) {
-                if (s1.equals(s2)) {
-                    cnt1++;
-                    break;
-                }
+        List<String> set1 = new ArrayList<>();
+        List<String> set2 = new ArrayList<>();
+        
+        Collections.sort(lst1);
+        Collections.sort(lst2);
+        
+        for (String s : lst1) {
+            if (lst2.remove(s)) {
+                set1.add(s);
             }
+            set2.add(s);
         }
-        if (lst1.size() == 0 && lst2.size() == 0) {
+        
+        for (String s : lst2) {
+            set2.add(s);
+        }
+        // 교집합이랑 합집합이 0일때
+        if (set1.size() == 0 && set2.size() == 0) {
             return target;
         }
         
-        cnt2 = lst1.size() + lst2.size() - cnt1;
-        double rst = (double) cnt1 / (double) cnt2;
+        double rst = (double) set1.size() / (double) set2.size();
         
         
         answer = (int) (rst * target);

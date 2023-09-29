@@ -1,45 +1,42 @@
 import java.util.*;
 
 class Solution {
-    static int a;
-    static int b;
-    static int c;
-    static int answer = 1000000;
     public int solution(int x, int y, int n) {
-        a = x;
-        b = y;
-        c = n;
+        int answer = 0;
         
-        dfs(b, 0);
+        Queue<Integer> que = new LinkedList<Integer>();
+        Set<Integer> visited = new HashSet<Integer>();
         
-        if (answer == 1000000) {
-            answer = -1;
+        que.add(x);
+        visited.add(x);
+        
+        while (!que.isEmpty()) {
+            int size = que.size();
+            
+            for (int i = 0; i < size; i++) {
+                int num = que.poll();
+            
+                if (num == y) {
+                    return answer;
+                }
+                if (num + n <= y && !visited.contains(num + n)) {
+                    que.add(num + n);
+                    visited.add(num + n);
+                }
+                if (num * 2 <= y && !visited.contains(num * 2)) {
+                    que.add(num * 2);
+                    visited.add(num * 2);
+                }
+                if (num * 3 <= y && !visited.contains(num * 3)) {
+                    que.add(num * 3);
+                    visited.add(num * 3);
+                }
+                
+            }
+            answer++;
+            
         }
-        return answer;
-    }
-    
-    public void dfs(int target, int cnt) {
-        if (target < a) {
-            return;
-        }
         
-        if (target == a) {
-            answer = Math.min(cnt, answer);
-            return;
-        }
-        
-        int ncnt = cnt + 1;
-        int target1 = target - c;
-        int target2 = target / 2;
-        int target3 = target / 3;
-        
-        dfs(target1, ncnt);
-        if (target % 2 == 0) {
-            dfs(target2, ncnt);    
-        }
-        if (target % 3 == 0) {
-            dfs(target3, ncnt);    
-        }
-        
+        return -1;
     }
 }

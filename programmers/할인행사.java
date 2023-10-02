@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 할인행사 {
     public int solution(String[] want, int[] number, String[] discount) {
         int answer = 0;
         

@@ -1,4 +1,4 @@
-class Solution {
+class solution {
     public int solution(int n) {
         int[] dp = new int[60001];
         dp[1] = 1;

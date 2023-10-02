@@ -1,4 +1,4 @@
-class Solution {
+class 연속된부분수열의합 {
     public int[] solution(int[] sequence, int k) {
         int N = sequence.length;
         int left = 0, right = N;

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 롤케이크 {
     public int solution(int[] topping) {
         int answer = 0;
         

@@ -2,7 +2,6 @@ import java.util.Stack;
 
 public class 뒤에있는큰수찾기 {
     public int[] solution(int[] numbers) {
-        // number index 정보를 담을 Stack 생성
         Stack<Integer> stack = new Stack<>();
 
         // 정답 배열 생성
@@ -25,7 +24,8 @@ public class 뒤에있는큰수찾기 {
         while (!stack.isEmpty()) {
             arr[stack.pop()] = -1;
         }
-
+        
+        // 정답 반환
         return arr;
     }
 }

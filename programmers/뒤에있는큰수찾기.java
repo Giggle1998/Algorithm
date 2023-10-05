@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class solution {
+public class 뒤에있는큰수찾기 {
     public int[] solution(int[] numbers) {
         // number index 정보를 담을 Stack 생성
         Stack<Integer> stack = new Stack<>();

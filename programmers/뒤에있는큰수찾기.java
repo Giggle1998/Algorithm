@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 뒤에있는큰수찾기 {
     public int[] solution(int[] numbers) {
         int[] answer = new int[numbers.length];
         // 2중 for문은 시간초과로 불가능

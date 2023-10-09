@@ -1,6 +1,6 @@
 import java.util.*;
 // 뉴스 클러스터링 코드
-class Solution {
+class 뉴스_클러스터링 {
     public int solution(String str1, String str2) {
         int answer = 0;
         int target = 65536;

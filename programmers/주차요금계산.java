@@ -46,14 +46,21 @@ public class 주차요금계산 {
                     map2.put(car, lastTime - carTime1);
             }   
         }
-        System.out.println(map2.entrySet());
         Object[] sortKey = map2.keySet().toArray();	//차 번호 순서대로 정렬
 		Arrays.sort(sortKey);
         answer = new int[sortKey.length];
 
-        System.out.println(Arrays.toString(sortKey));
+        for (int i = 0; i<answer.length; i++) {
+            int result = baseFee;
+            String car = String.valueOf(sortKey[i]);
+            
+            int val = map2.get(car);
+            if (val > baseTime) {
+                result = (int) (baseFee + Math.ceil((double)(val-baseTime)/partTime) * partFee);
+            }
+            answer[i] = result;
+        }
         
-        // 주차 시간 계산 후 배열에 입력
         return answer;
     }
     

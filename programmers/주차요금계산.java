@@ -5,6 +5,7 @@ public class 주차요금계산 {
 ** HashMap을 통해 차에 대한 사용 시간 정리
 ** 그 후 HashMap을 탐색하고 해당시간에 대한 연산 진행
 */
+// 추후 다시 풀기
     public int[] solution(int[] fees, String[] records) {
         int[] answer = {};
         Map<String, Integer> map1 = new HashMap<String, Integer>();

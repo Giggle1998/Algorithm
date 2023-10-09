@@ -53,7 +53,7 @@ public class 주차요금계산 {
 
         System.out.println(Arrays.toString(sortKey));
         
-        
+        // 주차 시간 계산 후 배열에 입력
         return answer;
     }
     

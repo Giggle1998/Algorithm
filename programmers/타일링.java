@@ -1,4 +1,4 @@
-class solution {
+class 타일링 {
     public int solution(int n) {
         int[] dp = new int[60001];
         dp[1] = 1;

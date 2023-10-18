@@ -1,18 +1,11 @@
-import java.util.*;
-
 public class 스킬트리 {
     public int solution(String skill, String[] skill_trees) {
         int answer = 0;
-        List<Character> list = new ArrayList<>();
-        
-        for (char c : skill.toCharArray()) {
-            list.add(c);
-        }
         
         for (String tree : skill_trees) {
             StringBuilder sb = new StringBuilder();
             for (char c : tree.toCharArray()) {
-                if (list.contains(c)) {
+                if (skill.indexOf(c) != -1) {
                     sb.append(String.valueOf(c));
                 }
             }

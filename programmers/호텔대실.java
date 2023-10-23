@@ -11,8 +11,8 @@ public class 호텔대실 {
             
             end += 10; // 청소 시간
             
-            if (end % 100 == 60) {
-                end += 40;
+            if (end % 100 >= 60) {
+                end += 40; // -60분 +1시간
             }
             
             bookTime[i][0] = start;
@@ -20,8 +20,28 @@ public class 호텔대실 {
             
         }
         
-        System.out.println(Arrays.deepToString(bookTime));
-        
+        Arrays.sort(bookTime, (a1, a2) -> {
+            return a1[0]-a2[0];
+        });
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+        for (int[] book : bookTime) {
+            
+            if (pq.isEmpty()) {
+                pq.add(book);
+            } else {
+                int[] tmp = pq.peek();
+                int start = tmp[0];
+                int end = tmp[1];
+                
+                if (book[0] >= end) {
+                    pq.poll();
+                }
+                pq.add(book);
+            }
+            
+        }
+
+        answer = pq.size();
         return answer;
     }
 }

@@ -15,6 +15,7 @@ class 야근지수 {
             n -= 1; // 남은 작업 시간 한시간 줄인다.
         }
         
+        // 최종 피로도 계산
         long answer = 0;
         for(int work : q) {
             answer += work * work;

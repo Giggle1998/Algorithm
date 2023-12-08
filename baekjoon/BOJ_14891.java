@@ -6,68 +6,72 @@ import java.io.*;
  * 시계방향 1, 반시계 방향 -1
  */
 public class BOJ_14891 {
-    static int N = 4;
-    static int[][] gear;
-    static int[] top;
-    public static void main(String[] args) throws Exception{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
-        gear = new int[N+1][8];
-        top = new int[N+1];
-
-		for(int i=1; i<=4 ;i++) {
+    static int wheels[][];
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		wheels = new int[4][8]; // 톱니바퀴 상태 입력
+		for (int i = 0; i < 4; i++) {
 			String s = br.readLine();
-			for(int j=0; j<8; j++) {
-				gear[i][j] = s.charAt(j) - '0';
+			for (int j = 0; j < 8; j++) {
+				wheels[i][j] = s.charAt(j) - '0';
 			}
 		}
-        
-        int K = Integer.parseInt(br.readLine());
-        for (int k = 0; k<K; k++) {
-            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            int idx = Integer.parseInt(st.nextToken());
-            int dr = Integer.parseInt(st.nextToken());
-
-            int[][] tlst = new int[N+1][2];
-            tlst[0][0] = idx;
-            tlst[0][1] = 0;
-
-            // 우측 방향 처리
-            for (int i = idx + 1; i <= N; i++) {
-                if (gear[i - 1][(top[i - 1] + 2) % 8] != gear[i][(top[i] + 6) % 8]) {
-                    tlst[i - idx - 1][0] = i;
-                    // 0이면 같은 방향, 1이면 다른 방향
-                    tlst[i - idx - 1][1] = (i - idx) % 2;
-                } else {
-                    break;
-                }
-            }
-
-            // 좌측 방향 처리
-            for (int i = idx - 1; i > 0; i--) {
-                if (gear[i][(top[i] + 2) % 8] != gear[i + 1][(top[i + 1] + 6) % 8]) {
-                    tlst[idx - i - 1][0] = i;
-                    // 0이면 같은 방향, 1이면 다른 방향
-                    tlst[idx - i - 1][1] = (idx - i) % 2;
-                } else {
-                    break;
-                }
-            }
-
-            // 실제 회전 처리
-            for (int i = 0; i < tlst.length; i++) {
-                int[] lst = tlst[i];
-                if (lst[1] == 0) {
-                    top[lst[0]] = (top[lst[0]] - dr + 8) % 8;
-                } else {
-                    top[lst[0]] = (top[lst[0]] + dr + 8) % 8;
-                }
-            }
-        }
-        int ans = 0;
-        int[] tbl = {0, 1, 2, 4, 8};
-        for (int i = 1; i <= N; i++) {
-            ans += gear[i][top[i]] * tbl[i];
-        }
-        System.out.println(ans);
-    }
+ 
+		int K = Integer.parseInt(br.readLine());
+		for (int i = 0; i < K; i++) {
+			st = new StringTokenizer(br.readLine());
+			int n = Integer.parseInt(st.nextToken()) - 1; // 회전할 톱니 번호
+			int d = Integer.parseInt(st.nextToken()); // 회전 방향
+			int isTurn[] = new int[4]; // 회전 여부 저장
+			isTurn[n] = d;
+ 
+			// n 왼쪽
+			for (int j = 0; n != 0 && j < n; j++) {
+				if (wheels[n - j][6] != wheels[n - j - 1][2])
+					isTurn[n - j - 1] = j % 2 == 0 ? -d : d; // j가 짝수면 다른 방향, 홀수면 같은 방향
+				else
+					break;
+			}
+ 
+			// n 오른쪽
+			for (int j = 0; n != 3 && j < 4 - n - 1; j++) {
+				if (wheels[n + j][2] != wheels[n + j + 1][6])
+					isTurn[n + j + 1] = j % 2 == 0 ? -d : d; // j가 짝수면 다른 방향, 홀수면 같은 방향
+				else
+					break;
+			}
+ 
+			// 회전
+			for (int j = 0; j < 4; j++) {
+				if (isTurn[j] == 1) // 시계방향 회전
+					goTurn(j);
+				else if (isTurn[j] == -1) // 반시계방향 회전
+					goBack(j);
+			}
+		}
+		
+		int result = 0;	// 점수
+		for (int i = 0; i < 4; i++) {
+			if(wheels[i][0] == 1)
+				result += Math.pow(2, i);	// i번째 톱니바퀴 점수 : 2^i
+		}
+		System.out.println(result);
+	}
+ 
+	// 반시계방향
+	private static void goBack(int n) {
+		int temp = wheels[n][0];
+		for (int i = 0; i <= 6; i++)
+			wheels[n][i] = wheels[n][i + 1];
+		wheels[n][7] = temp;
+	}
+ 
+	// 시계방향
+	private static void goTurn(int n) {
+		int temp = wheels[n][7];
+		for (int i = 6; i >= 0; i--)
+			wheels[n][i + 1] = wheels[n][i];
+		wheels[n][0] = temp;
+	}
 }
